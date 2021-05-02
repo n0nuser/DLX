@@ -1,7 +1,8 @@
 ; Programa Plantilla
 
-	.data
+.data
 ; Espacio de datos
+
 ; VARIABLES DE ENTRADA: NO MODIFICAR ORDEN (Se pueden modificar los valores)
 a1: .float 1.1
 a2: .float 2.2
@@ -25,10 +26,13 @@ check: .float 0.0
 
 ; Nuestras variables
 A: .float 0.0, 0.0
-     .float 0.0, 0.0
+   .float 0.0, 0.0
 
 B: .float 0.0, 0.0
-     .float 0.0, 0.0
+   .float 0.0, 0.0
+
+C: .float 0.0, 0.0
+   .float 0.0, 0.0
 
 AB: .float 0.0, 0.0, 0.0, 0.0
     .float 0.0, 0.0, 0.0, 0.0
@@ -43,24 +47,24 @@ main:
 	;Aqui va el codigo
     
     ;MF_A1_A2
-    lf f1,a1
-    lf f2,a2
-    sf A,a1
-    divf f3,a1,a2
-    sf A+4,f3
-    sf A+8,a2
-    multf f4,a1,a2
-    sf A+12,f4
+    lf  f1,a1
+    lf  f2,a2
+    sf  A,f1
+    divf    f3,f1,f2
+    sf  A+4,f3
+    sf  A+8,f2
+    multf   f4,f1,f2
+    sf  A+12,f4
 
     ;MF_A3_A4
-    lf f1,a3
-    lf f2,a4
-    sf B,a3
-    divf f3,a3,a4
-    sf B+4,f3
-    sf B+8,a4
-    multf f4,a3,a4
-    sf B+12,f4
+    lf  f1,a3
+    lf  f2,a4
+    sf  B,f1
+    divf    f3,f1,f2
+    sf  B+4,f3
+    sf  B+8,f2
+    multf   f4,f1,f2
+    sf  B+12,f4
 
     
     ;AxB
@@ -68,37 +72,120 @@ main:
     ;12 -> 4
     ;21 -> 8
     ;22 -> 12
-    multf f1,A+0,B+0 ;; a11b11
-    multf f2,A+0,B+4 ;; a11b12
-    multf f3,A+4,B+0 ;; a12b11
-    multf f4,A+4,B+4 ;; a12b12
-    multf f5,A+0,B+8 ;; a11b21
-    multf f6,A+0,B+12 ;; a11b22
-    multf f7,A+4,B+8 ;; a12b21
-    multf f8,A+4,B+12 ;; a12b22
-    multf f9,A+8,B+0 ;; a21b11
-    multf f10,A+8,B+4 ;; a21b12
-    multf f11,A+12,B+0 ;; a22b11
-    multf f12,A+12,B+4 ;; a22b12
-    multf f13,A+8,B+8 ;; a21b21
-    multf f14,A+8,B+12 ;; a21b22
-    multf f15,A+12,B+8 ;; a22b21
-    multf f16,A+12,B+12 ;; a22b22
-    sf AB+0,f1
-    sf AB+4,f2
-    sf AB+8,f3
-    sf AB+12,f4
-    sf AB+16,f5
-    sf AB+20,f6
-    sf AB+24,f7
-    sf AB+28,f8
-    sf AB+32,f9
-    sf AB+36,f10
-    sf AB+40,f11
-    sf AB+44,f12
-    sf AB+48,f13
-    sf AB+52,f14
-    sf AB+56,f15
-    sf AB+60,f16
+    lf f1,A+0
+    lf f2,B+0
+    multf f3,f1,f2 ; a11b11
+    sf AB+0,f3
+
+    lf f1,A+0
+    lf f2,B+4
+    multf f3,f1,f2    ; a11b12
+    sf AB+0,f3
+
+    lf f1,A+4
+    lf f2,B+0
+    multf f3,f1,f2    ; a12b11
+    sf AB+0,f3
+
+    lf f1,A+4
+    lf f2,B+4
+    multf f3,f1,f2    ; a12b12
+    sf AB+0,f3
+
+    lf f1,A+0
+    lf f2,B+8
+    multf f3,f1,f2    ; a11b21
+    sf AB+0,f3
+
+    lf f1,A+0
+    lf f2,B+12
+    multf f3,f1,f2   ; a11b22
+    sf AB+0,f3
+
+    lf f1,A+4
+    lf f2,B+8
+    multf f3,f1,f2   ; a12b21
+    sf AB+0,f3
+
+    lf f1,A+4
+    lf f2,B+12
+    multf f3,f1,f2   ; a12b22
+    sf AB+0,f3
+
+    lf f1,A+8
+    lf f2,B+0
+    multf f3,f1,f2    ; a21b11
+    sf AB+0,f3
+
+    lf f1,A+8
+    lf f2,B+4
+    multf f3,f1,f2   ; a21b12
+    sf AB+0,f3
+
+    lf f1,A+12
+    lf f2,B+0
+    multf f3,f1,f2  ; a22b11
+    sf AB+0,f3
+
+    lf f1,A+12
+    lf f2,B+4
+    multf f3,f1,f2  ; a22b12
+    sf AB+0,f3
     
+    lf f1,A+8
+    lf f2,B+8
+    multf f3,f1,f2   ; a21b21
+    sf AB+0,f3
+    
+    lf f1,A+8
+    lf f2,B+12
+    multf f3,f1,f2  ; a21b22
+    sf AB+0,f3
+    
+    lf f1,A+12
+    lf f2,B+8
+    multf f3,f1,f2  ; a22b21
+    sf AB+0,f3
+    
+    lf f1,A+12
+    lf f2,B+12
+    multf f3,f1,f2 ; a22b22
+    sf AB+0,f3
+
+    ; Suma de a3 y a4
+    addf    f31,a1,a4 ; En F31 queda la suma de A1 + A4
+    
+    ;MF_A2_A3
+    lf  f1,a2
+    lf  f2,a3
+    sf  C,f1
+    divf    f3,f1,f2
+    sf  C+4,f3
+    sf  C+8,f2
+    multf   f4,f1,f2
+    sf  C+12,f4
+
+    multf   f5,f1,f4
+    multf   f6,f2,f3
+    subf    f30,f5,f6
+
+    divf    f29,f31,f30
+
+    multf   M+0,AB+0,f29
+    multf   M+4,AB+,f29
+    multf   M+8,AB+8,f29
+    multf   M+12,AB+12,f29
+    multf   M+16,AB+15,f29
+    multf   M+20,AB+20,f29
+    multf   M+24,AB+24,f29
+    multf   M+28,AB+28,f29
+    multf   M+32,AB+32,f29
+    multf   M+36,AB+36,f29
+    multf   M+40,AB+40,f29
+    multf   M+44,AB+44,f29
+    multf   M+48,AB+48,f29
+    multf   M+52,AB+52,f29
+    multf   M+56,AB+56,f29
+    multf   M+60,AB+60,f29
+
 	trap 0 ; Finaliza la ejecucion
