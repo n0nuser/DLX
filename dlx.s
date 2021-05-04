@@ -122,20 +122,20 @@ main:
    sf AB+60,f24
    ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-   addf    f31,f1,f2 ; En F31 queda la suma de A1 + A4
+   addf    f31,f1,f4 ; En F31 queda la suma de A1 + A4
    
    ;MF_A2_A3
    sf  C,f2
-   divf    f24,f2,f3
-   sf  C+4,f24
+   divf    f25,f2,f3
+   sf  C+4,f25
    sf  C+8,f3
-   multf   f25,f2,f3
-   sf  C+12,f25
+   multf   f26,f2,f3
+   sf  C+12,f26
    
    ;DETERMINANTE
-   multf   f26,f2,f25   ; Diagonal primera
-   multf   f27,f24,f3   ; Diagonal segunda
-   subf    f30,f26,f27  ; Resta
+   multf   f27,f2,f26   ; Diagonal primera
+   multf   f28,f25,f3   ; Diagonal segunda
+   subf    f30,f27,f28  ; Resta
    divf    f29,f31,f30  ; Resultado parte derecha operacion queda en F29
 
    ; MULTIPLICACIÓN DE MATRIZ POR UN NÚMERO
@@ -159,37 +159,37 @@ main:
    ; se guardan desde el f25 al f28 para mejorar el rendimiento (en comparación con guardarlo en f6)
    ; f9 al 24 restringidos por datos de AB
    ; f29 es el resultado de la parte derecha de la cuenta
-   multf   f25,f9,f29
-   sf M+0,f25
-   multf   f26,f10,f29
-   sf M+4,f26
-   multf   f27,f11,f29
-   sf M+8,f27
-   multf   f28,f12,f29
-   sf M+12,f28
-   multf   f25,f13,f29
-   sf M+16,f25
-   multf   f26,f14,f29
-   sf M+20,f26
-   multf   f27,f15,f29
-   sf M+24,f27
-   multf   f28,f16,f29
-   sf M+28,f28
-   multf   f25,f17,f29
-   sf M+32,f25
-   multf   f26,f18,f29
-   sf M+36,f26
-   multf   f27,f19,f29
-   sf M+40,f27
-   multf   f28,f20,f29
-   sf M+44,f28
-   multf   f25,f21,f29
-   sf M+48,f25
-   multf   f26,f22,f29
-   sf M+52,f26
-   multf   f27,f23,f29
-   sf M+56,f27
-   multf   f28,f24,f29
-   sf M+60,f28
+   multf   f27,f9,f29
+   sf M+0,f27
+   multf   f28,f10,f29
+   sf M+4,f28
+   multf   f30,f11,f29
+   sf M+8,f30
+   multf   f31,f12,f29
+   sf M+12,f31
+   multf   f27,f13,f29
+   sf M+16,f27
+   multf   f28,f14,f29
+   sf M+20,f28
+   multf   f30,f15,f29
+   sf M+24,f30
+   multf   f31,f16,f29
+   sf M+28,f31
+   multf   f27,f17,f29
+   sf M+32,f27
+   multf   f28,f18,f29
+   sf M+36,f28
+   multf   f30,f19,f29
+   sf M+40,f30
+   multf   f31,f20,f29
+   sf M+44,f31
+   multf   f27,f21,f29
+   sf M+48,f27
+   multf   f28,f22,f29
+   sf M+52,f28
+   multf   f30,f23,f29
+   sf M+56,f30
+   multf   f31,f24,f29
+   sf M+60,f31
 
 	trap 0 ; Finaliza la ejecucion
