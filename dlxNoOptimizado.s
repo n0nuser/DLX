@@ -156,7 +156,7 @@ main:
    ; AB+56 -> f23
    ; AB+60 -> f24
 
-   ; se guardan desde el f25 al f28 para mejorar el rendimiento (en comparación con guardarlo en f6)
+   ; se guardan desde el f5 a f8, f27 y 28, 30 y 31 para mejorar el rendimiento (en comparación con guardarlo en f6)
    ; f9 al 24 restringidos por datos de AB
    ; f29 es el resultado de la parte derecha de la cuenta
    multf   f27,f9,f29
@@ -191,5 +191,57 @@ main:
    sf M+56,f30
    multf   f31,f24,f29
    sf M+60,f31
+
+   ;VM
+   lf f5,M+0
+   lf f6,M+16
+   multf f7,f5,f6
+   sf VM+0,f7   
+
+   lf f5,M+4
+   lf f6,M+20
+   multf f8,f5,f6
+   sf VM+4,f8
+
+   lf f5,M+8
+   lf f6,M+24
+   multf f9,f5,f6
+   sf VM+8,f9
+
+   lf f5,M+12
+   lf f6,M+28
+   multf f10,f5,f6
+   sf VM+12,f10
+
+   ;HM
+   lf f5,M+32
+   lf f6,M+48
+   multf f11,f5,f6
+   sf HM+0,f11
+
+   lf f5,M+36
+   lf f6,M+52
+   multf f12,f5,f6
+   sf HM+4,f12
+
+   lf f5,M+40
+   lf f6,M+56
+   multf f13,f5,f6
+   sf HM+8,f13
+
+   lf f5,M+44
+   lf f6,M+60
+   multf f14,f5,f6
+   sf HM+12,f14
+
+   ;check
+   addf f5,f7,f8
+   addf f5,f9,f5
+   addf f5,f10,f5
+   addf f5,f11,f5
+   addf f5,f12,f5
+   addf f5,f13,f5
+   addf f5,f14,f5
+   sf check,f5
 
 	trap 0 ; Finaliza la ejecucion
