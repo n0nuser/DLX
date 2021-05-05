@@ -23,22 +23,7 @@ HM: .float 0.0, 0.0, 0.0, 0.0
 VM: .float 0.0, 0.0, 0.0, 0.0
 check: .float 0.0
 ; FIN NO MODIFICAR ORDEN
-
-; Nuestras variables
-A: .float 0.0, 0.0
-   .float 0.0, 0.0
-
-B: .float 0.0, 0.0
-   .float 0.0, 0.0
-
-C: .float 0.0, 0.0
-   .float 0.0, 0.0
-
-AB: .float 0.0, 0.0, 0.0, 0.0
-    .float 0.0, 0.0, 0.0, 0.0
-    .float 0.0, 0.0, 0.0, 0.0
-    .float 0.0, 0.0, 0.0, 0.0
-     
+ 
 	.text
 ; Espacio de codigo
 	.global main
@@ -47,22 +32,14 @@ main:
    ;MF_A1_A2
    lf  f1,a1 ; a1 en f1
    lf  f2,a2 ; a2 en f2
-   sf  A+0,f1
    divf    f5,f1,f2
-   sf  A+4,f5
-   sf  A+8,f2
    multf   f6,f1,f2
-   sf  A+12,f6
 
    ;MF_A3_A4
    lf  f3,a3 ; a3 en f3
    lf  f4,a4 ; a4 en f4
-   sf  B+0,f3
    divf    f7,f3,f4
-   sf  B+4,f7
-   sf  B+8,f4
    multf   f8,f3,f4
-   sf  B+12,f8
 
    ; f1 = a1 y A+0
    ; f2 = a2 y A+8
@@ -89,48 +66,28 @@ main:
    ;21 -> 8
    ;22 -> 12
    multf f9,f1,f3    ; a11b11
-   sf AB+0,f9
    multf f10,f1,f7   ; a11b12
-   sf AB+4,f10
    multf f11,f5,f3   ; a12b11
-   sf AB+8,f11
    multf f12,f5,f7   ; a12b12
-   sf AB+12,f12
    multf f13,f1,f4   ; a11b21
-   sf AB+16,f13
    multf f14,f1,f8   ; a11b22
-   sf AB+20,f14
    multf f15,f5,f4   ; a12b21
-   sf AB+24,f15
    multf f16,f5,f8   ; a12b22
-   sf AB+28,f16
    multf f17,f2,f3   ; a21b11
-   sf AB+32,f17
    multf f18,f2,f7   ; a21b12
-   sf AB+36,f18
    multf f19,f6,f3   ; a22b11
-   sf AB+40,f19
    multf f20,f6,f7   ; a22b12
-   sf AB+44,f20
    multf f21,f2,f4   ; a21b21
-   sf AB+48,f21
    multf f22,f2,f8   ; a21b22
-   sf AB+52,f22
    multf f23,f6,f4   ; a22b21
-   sf AB+56,f23
    multf f24,f6,f8   ; a22b22
-   sf AB+60,f24
    ;;;;;;;;;;;;;;;;;;;;;;;;;
 
    addf    f31,f1,f4 ; En F31 queda la suma de A1 + A4
    
    ;MF_A2_A3
-   sf  C,f2
    divf    f25,f2,f3
-   sf  C+4,f25
-   sf  C+8,f3
    multf   f26,f2,f3
-   sf  C+12,f26
    
    ;DETERMINANTE
    multf   f27,f2,f26   ; Diagonal primera
