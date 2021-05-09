@@ -24,21 +24,6 @@ VM: .float 0.0, 0.0, 0.0, 0.0
 check: .float 0.0
 ; FIN NO MODIFICAR ORDEN
 
-; Nuestras variables
-A: .float 0.0, 0.0
-   .float 0.0, 0.0
-
-B: .float 0.0, 0.0
-   .float 0.0, 0.0
-
-C: .float 0.0, 0.0
-   .float 0.0, 0.0
-
-AB: .float 0.0, 0.0, 0.0, 0.0
-    .float 0.0, 0.0, 0.0, 0.0
-    .float 0.0, 0.0, 0.0, 0.0
-    .float 0.0, 0.0, 0.0, 0.0
-     
 	.text
 ; Espacio de codigo
 	.global main
@@ -47,22 +32,27 @@ main:
    lf f2,a2
    lf f3,a4
    
+   eqf f2,f0
+   bfpt	fin
    divf f7,f3,f2  ;f
    multf f5,f2,f3 ;y
-   lf f1,a1
    lf f4,a3
    multf f6,f2,f4 ;z
+   lf f1,a1
    multf f30,f2,f6 ; a2·z
-   addf f29,f1,f3  ; a1 + a4
-   ;Aquí se puede meter algo de un ciclo
    subf f31,f30,f2 ; (a2·z) - a2
+   addf f29,f1,f3  ; a1 + a4
    
+   eqf f31,f0
+   bfpt	fin
    divf f8,f29,f31   ; Resultado determinante
    multf f4,f1,f4    ; x
    multf f14,f1,f3   ; ab21
    multf f15,f4,f3   ; ab22
    multf f16,f1,f7   ; ab23
 
+   eqf f3,f0
+   bfpt	fin
    divf f13,f2,f3    ; ab34
    multf f17,f4,f7   ; ab24
    multf f18,f4,f2   ; ab33
@@ -76,7 +66,6 @@ main:
    multf f14,f14,f8  ; M21
    sf M+0,f23
    
-
    divf f9,f4,f3     ; ab12
    multf f10,f10,f8  ; M13
    sf M+16,f14
@@ -87,6 +76,8 @@ main:
    multf f17,f17,f8  ; M24
    sf M+24,f16
 
+   eqf f5,f0
+   bfpt	fin
    divf f11,f4,f5    ; ab14
    multf f9,f9,f8    ; M12
    sf M+28,f17
@@ -111,41 +102,43 @@ main:
    sf M+56,f21
    multf f12,f12,f8  ; M32
    sf M+60,f22
-   sf M+36,f12
 
    ;VM
    multf f1,f23,f14
-   sf VM+0,f1  
+   sf M+36,f12
    
    multf f2,f9,f15
-   sf VM+4,f2
+   sf VM+0,f1  
 
    multf f3,f10,f16
-   sf VM+8,f3
+   sf VM+4,f2
    addf f26,f1,f2
 
    multf f4,f11,f17
-   sf VM+12,f4
+   sf VM+8,f3
    addf f26,f3,f26
 
    ;HM
    multf f5,f24,f25
-   sf HM+0,f5
    addf f26,f4,f26
+   sf VM+12,f4
 
    multf f6,f12,f20
-   sf HM+4,f6
+   sf HM+0,f5
    addf f26,f5,f26
    
+   
    multf f7,f18,f21
-   sf HM+8,f7
    addf f26,f6,f26
+   sf HM+4,f6
+   
 
    multf f8,f19,f22
-   sf HM+12,f8
-   addf f26,f7,f26   
+   sf HM+8,f7
+   addf f26,f7,f26
    addf f26,f8,f26
+   sf HM+12,f8
    sf check,f26
 
+fin:
    trap 0
-
