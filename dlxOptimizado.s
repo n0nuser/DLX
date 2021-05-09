@@ -29,30 +29,30 @@ check: .float 0.0
 	.global main
 
 main:
-   lf f2,a2
-   lf f3,a4
+   lf f2,a2			   ; Carga de a2 en f2
+   lf f3,a4			   ; Carga de a4 en f3
    
-   eqf f2,f0
-   bfpt	fin
-   divf f7,f3,f2  ;f
-   multf f5,f2,f3 ;y
-   lf f4,a3
-   multf f6,f2,f4 ;z
-   lf f1,a1
-   multf f30,f2,f6 ; a2·z
-   subf f31,f30,f2 ; (a2·z) - a2
-   addf f29,f1,f3  ; a1 + a4
+   eqf f2,f0		   ; Comprobación del denominador 
+   bfpt	fin			; Si es verdadero termina
+   divf f7,f3,f2	   ; f -> Variable imagen cuentas
+   multf f5,f2,f3	   ; y -> Variable imagen cuentas
+   lf f4,a3			   ; Carga de a3 en f4
+   multf f6,f2,f4	   ; z -> Variable imagen cuentas
+   lf f1,a1			   ; Carga de a1 en f1
+   multf f30,f2,f6	; a2·z
+   subf f31,f30,f2   ; (a2·z) - a2
+   addf f29,f1,f3	   ; a1 + a4
    
-   eqf f31,f0
-   bfpt	fin
+   eqf f31,f0        ; Comprobación del denominador 
+   bfpt	fin         ; Si es verdadero termina
    divf f8,f29,f31   ; Resultado determinante
-   multf f4,f1,f4    ; x
+   multf f4,f1,f4    ; x -> Variable imagen cuentas
    multf f14,f1,f3   ; ab21
    multf f15,f4,f3   ; ab22
    multf f16,f1,f7   ; ab23
 
-   eqf f3,f0
-   bfpt	fin
+   eqf f3,f0	      ; Comprobación del denominador 
+   bfpt	fin	      ; Si es verdadero termina
    divf f13,f2,f3    ; ab34
    multf f17,f4,f7   ; ab24
    multf f18,f4,f2   ; ab33
@@ -64,7 +64,7 @@ main:
    multf f19,f4,f13  ; ab34 Dependencia
    multf f23,f4,f8   ; M11
    multf f14,f14,f8  ; M21
-   sf M+0,f23
+   sf M+0,f23		
    
    divf f9,f4,f3     ; ab12
    multf f10,f10,f8  ; M13
@@ -76,8 +76,8 @@ main:
    multf f17,f17,f8  ; M24
    sf M+24,f16
 
-   eqf f5,f0
-   bfpt	fin
+   eqf f5,f0	      ; Comprobación del denominador 
+   bfpt	fin		   ; Si es verdadero termina
    divf f11,f4,f5    ; ab14
    multf f9,f9,f8    ; M12
    sf M+28,f17
@@ -104,39 +104,39 @@ main:
    sf M+60,f22
 
    ;VM
-   multf f1,f23,f14
+   multf f1,f23,f14  ; VM11
    sf M+36,f12
    
-   multf f2,f9,f15
+   multf f2,f9,f15   ; VM12
    sf VM+0,f1  
 
-   multf f3,f10,f16
+   multf f3,f10,f16  ; VM13
    sf VM+4,f2
-   addf f26,f1,f2
+   addf f26,f1,f2    ; suma check
 
-   multf f4,f11,f17
+   multf f4,f11,f17  ; VM14
    sf VM+8,f3
-   addf f26,f3,f26
+   addf f26,f3,f26   ; suma check
 
    ;HM
-   multf f5,f24,f25
-   addf f26,f4,f26
+   multf f5,f24,f25  ; HM11
+   addf f26,f4,f26   ; suma check
    sf VM+12,f4
 
-   multf f6,f12,f20
+   multf f6,f12,f20  ; HM12
    sf HM+0,f5
-   addf f26,f5,f26
+   addf f26,f5,f26   ; suma check
    
    
-   multf f7,f18,f21
-   addf f26,f6,f26
+   multf f7,f18,f21  ; HM13
+   addf f26,f6,f26   ; suma check
    sf HM+4,f6
    
 
-   multf f8,f19,f22
+   multf f8,f19,f22  ; HM14
    sf HM+8,f7
-   addf f26,f7,f26
-   addf f26,f8,f26
+   addf f26,f7,f26   ; suma check
+   addf f26,f8,f26   ; suma check
    sf HM+12,f8
    sf check,f26
 

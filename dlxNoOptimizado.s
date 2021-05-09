@@ -30,14 +30,17 @@ check: .float 0.0
 
 main:
    ;MF_A1_A2
-   lf  f1,a1 ; a1 en f1
-   lf  f2,a2 ; a2 en f2
+   lf  f1,a1 ;  Carga de a1 en f1
+   lf  f2,a2 ;  Carga de a2 en f2
    divf    f5,f1,f2
    multf   f6,f1,f2
 
    ;MF_A3_A4
-   lf  f3,a3 ; a3 en f3
-   lf  f4,a4 ; a4 en f4
+   lf  f3,a3 ; Carga a3 en f3
+   lf  f4,a4 ; Carga a4 en f4
+   
+   eqf f4,f0		   ; Comprobación del denominador 
+   bfpt	fin			; Si es verdadero termina
    divf    f7,f3,f4
    multf   f8,f3,f4
 
@@ -86,6 +89,8 @@ main:
    addf    f31,f1,f4 ; En F31 queda la suma de A1 + A4
    
    ;MF_A2_A3
+   eqf f3,f0		   ; Comprobación del denominador 
+   bfpt	fin			; Si es verdadero termina
    divf    f25,f2,f3
    multf   f26,f2,f3
    
@@ -93,6 +98,8 @@ main:
    multf   f27,f2,f26   ; Diagonal primera
    multf   f28,f25,f3   ; Diagonal segunda
    subf    f30,f27,f28  ; Resta
+   eqf f30,f0		      ; Comprobación del denominador 
+   bfpt	fin			   ; Si es verdadero termina
    divf    f29,f31,f30  ; Resultado parte derecha operacion queda en F29
 
    ; MULTIPLICACIÓN DE MATRIZ POR UN NÚMERO
@@ -116,6 +123,7 @@ main:
    ; se guardan desde el f5 a f8, f27 y 28, 30 y 31 para mejorar el rendimiento (en comparación con guardarlo en f6)
    ; f9 al 24 restringidos por datos de AB
    ; f29 es el resultado de la parte derecha de la cuenta
+   ; Toda esta sección son las cuentas de M y cómo se guardan
    multf   f27,f9,f29
    sf M+0,f27
    multf   f28,f10,f29
@@ -201,4 +209,5 @@ main:
    addf f5,f14,f5
    sf check,f5
 
+fin:
 	trap 0 ; Finaliza la ejecucion
