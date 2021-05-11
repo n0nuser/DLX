@@ -11,7 +11,7 @@ Fecha de entrega 21 de Mayo de 2021
 
 ## Enunciado
 
-Es [este documento](./Enunciado.pdf).
+Es [este documento](docs/Enunciado.pdf).
 
 ## Resolución
 
@@ -29,8 +29,8 @@ Y por último reordenamos algunas instrucciones que tenían dependencias y conse
 
 Por lo tanto, **hemos conseguido reducir 145 ciclos**.
 
-Para una explicación más detallada, tenemos el [informe final](InformeFinal.pdf) que entregamos.
+Para una explicación más detallada, tenemos el [informe final](docs/InformeFinal.pdf) que entregamos.
 
 ## Documentos adicionales
 
-* [Resumen Instrucciones DLX](./ResumenInstruccionesDLX.pdf)
+* [Resumen Instrucciones DLX](docs/ResumenInstruccionesDLX.pdf)
