@@ -23,11 +23,11 @@ Haciendo las siguientes cuentas, haciendo factor común a las multiplicaciones, 
 
 ![Cuentas](img/cuentas.png)
 
-Y por último reordenamos algunas instrucciones que tenían dependencias y conseguimos bajar a **206 ciclos**.
+Y por último reordenamos algunas instrucciones que tenían dependencias y conseguimos bajar a **203 ciclos**.
 
 ![Estadísticas optimizadas](img/statsOpti.png)
 
-Por lo tanto, **hemos conseguido reducir 145 ciclos**.
+Por lo tanto, **hemos conseguido reducir 148 ciclos**.
 
 Para una explicación más detallada, tenemos el [informe final](docs/InformeFinal.pdf) que entregamos.
 
