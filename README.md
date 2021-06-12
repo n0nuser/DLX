@@ -7,7 +7,11 @@ Fecha de entrega 21 de Mayo de 2021
 * [Sergio García González](https://github.com/AnOrdinaryUsser)
 * Pablo Jesús González Rubio
 
-## Nota Final:
+## Nota Final: 8.12
+
+### Posibles Mejoras
+
+Se podría hacer factor común en la multiplicación de la matriz AB con la cuenta de la división (parte derecha de la operación) y con eso bajar fácilmente muchos ciclos.
 
 ## Enunciado
 
